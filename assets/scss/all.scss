@@ -1,0 +1,23 @@
+@import '~assets/scss/vendors/_bootstrap';
+
+$theme: #38470B;
+
+.list-style {
+  &--none {
+    list-style: none;
+  }
+}
+
+.bg--theme {
+  background-color: $theme;
+}
+
+.btn-outline-white {
+  border: 1px solid white;
+  color: white;
+  transition: all .3s;
+  &:hover {
+    color: white;
+    transform: scale(1.04);
+  }
+}
