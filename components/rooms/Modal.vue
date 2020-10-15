@@ -1,10 +1,6 @@
 <template>
   <div id="rvModal" class="layer layer--flex-center disabled">
-    <div class="cModal border border-primary">
-      <div class="container-fluid px-0">
-        <BookingPage v-bind="$attrs" />
-      </div>
-    </div>
+    <BookingPage v-bind="$attrs" />
   </div>
 </template>
 
@@ -36,22 +32,6 @@ export default {
   }
   &.disabled {
     display: none !important;
-  }
-}
-
-.cModal {
-  width: 80%;
-  &__userInfo {
-    padding: 10px 65px;
-    display: flex;
-    align-items: center;
-  }
-  &__detail {
-    padding: 10px 65px;
-    position: relative;
-  }
-  &__form {
-    padding-bottom: 14px;
   }
 }
 </style>

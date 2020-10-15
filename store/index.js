@@ -1,9 +1,11 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-shadow */
 
 const state = () => ({
   rooms: [],
   rv: {},
+  bookStatus: false,
 });
 
 const actions = {
@@ -16,16 +18,15 @@ const actions = {
   booking(context, bookerInfo) {
     const { name, tel, id } = bookerInfo;
     const { start, end } = context.state.rv;
-    let currentTime = new Date(start).getTime();
-    const stopTime = new Date(end).getTime();
-    const stayArray = [];
 
+    const stayArray = [];
+    const stopTime = new Date(end).getTime();
+    let currentTime = new Date(start).getTime();
     while (currentTime <= stopTime) {
       const YYYY = new Date(currentTime).getFullYear();
       const MM = new Date(currentTime).getMonth() + 1;
       const DD = new Date(currentTime).getDate();
       stayArray.push(`${YYYY}-${MM}-${DD}`);
-
       currentTime += 86400000;
     }
 
@@ -36,24 +37,28 @@ const actions = {
       date: stayArray,
     };
 
-    this.$axios.$post(`/room/${bookerInfo.id}`, sendData)
+    return this.$axios.$post(`/room/${bookerInfo.id}`, sendData)
       .then((res) => {
         console.log(res);
+        context.commit('BOOK_SUCCESS');
+      })
+      .catch(() => {
+        context.commit('BOOK_FAIL');
       });
   },
 };
 
 const mutations = {
-  SET_ROOMS_DATA(context, data) {
-    context.rooms = data;
+  SET_ROOMS_DATA(state, data) {
+    state.rooms = data;
   },
-  SET_RV_INFO(context, info) {
+  SET_RV_INFO(state, info) {
     const start = info[0];
     const end = info[1];
-    let currentTime = new Date(start).getTime();
+
     const endTime = new Date(end).getTime();
     const dateArray = [];
-
+    let currentTime = new Date(start).getTime();
     while (currentTime <= endTime) {
       dateArray.push(currentTime);
       currentTime += 86400000;
@@ -69,7 +74,7 @@ const mutations = {
     const weakday = mapDate.filter((el) => el === true).length;
     const holiday = mapDate.filter((el) => el === false).length;
 
-    context.rv = {
+    state.rv = {
       start,
       end,
       weakday,
@@ -77,8 +82,14 @@ const mutations = {
       days: mapDate.length,
     };
   },
-  UPDATE_RV_INFO(context, newRv) {
+  UPDATE_RV_INFO(state, newRv) {
     this.commit('SET_RV_INFO', [newRv.start, newRv.end]);
+  },
+  BOOK_FAIL(state) {
+    state.bookStatus = false;
+  },
+  BOOK_SUCCESS(state) {
+    state.bookStatus = true;
   },
 };
 
@@ -97,6 +108,9 @@ const getters = {
   },
   rvInfo(state) {
     return { ...state.rv };
+  },
+  bookStatus(state) {
+    return state.bookStatus;
   },
 };
 

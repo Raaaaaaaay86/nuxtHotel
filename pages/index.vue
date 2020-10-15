@@ -2,7 +2,7 @@
   <div class="container-fluid h-100 root">
     <div class="row h-100">
       <!--sidebar start-->
-      <div class="col-md-3 offset-1 d-flex flex-column justify-content-center align-items-center">
+      <div class="col-3 offset-1 d-flex flex-column justify-content-center align-items-center">
         <img
           :src="require('@/assets/img/logo.png')"
           alt="logo"
@@ -27,7 +27,7 @@
       </div>
       <!--sidebar end-->
       <!--cube start-->
-      <div class="col-md-7 d-flex justify-content-center align-items-center">
+      <div class="col-7 overflow-hidden d-flex justify-content-center align-items-center">
         <div class="cubeGroup">
           <template v-for="(i, key) in roomsId">
             <nuxt-link :key="key" :to="`/rooms/${i}`" :class="`cubeGroup__cube${key + 1}`" />

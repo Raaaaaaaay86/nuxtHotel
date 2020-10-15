@@ -38,10 +38,11 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-  width: 200px;
+  width: 220px;
   min-height: 130px;
-  margin-right: 40px;
+  margin-right: 35px;
   position: relative;
+  border-radius: 0px 0px 5% 5%;
   &::after {
     content: '>';
     font-size: 30px;
@@ -63,8 +64,7 @@ export default {
   }
   &__content {
     text-align: center;
-    padding: 5px 10px;
-    border-radius: 0px 0px 10% 10%;
+    padding: 15px 10px;
   }
 }
 </style>

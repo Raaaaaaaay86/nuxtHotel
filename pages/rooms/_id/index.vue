@@ -3,11 +3,14 @@
     <Modal
       :amenities="room[0].amenities"
       :room="room"
+      :disabled-dates="disabledDates"
     />
     <div class="container-fluid px-0">
       <div class="row no-gutters">
-        <div class="col-md-5 position-relative">
-          <Carousel />
+        <div class="col-12 col-md-5 position-relative">
+          <Carousel
+            :image-url="room[0].imageUrl"
+          />
           <div class="sideInfo">
             <div class="d-flex sideInfo__leave">
               <img :src="require('@/assets/svg/escapeLeft.svg')" alt="">
@@ -16,8 +19,8 @@
               </nuxt-link>
             </div>
             <div class="d-flex flex-column align-content-center">
-              <h2>
-                ${{ room[0].normalDayPrice }}
+              <h2 class="font-weight-bold">
+                {{ room[0].normalDayPrice | currency }}
                 <span class="h4"> / 晚</span>
               </h2>
 
@@ -30,7 +33,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-7 roomDetail">
+        <div class="col-12 col-md-7 roomDetail">
           <h1>
             {{ room[0].name }}
           </h1>
@@ -40,7 +43,7 @@
 
           <div class="d-flex flex-column roomDetail__time">
             <span>
-              平日（一～四）價格：${{ room[0].normalDayPrice }} / 假日（五〜日）價格：${{ room[0].holidayPrice }}
+              平日（一～四）價格：{{ room[0].normalDayPrice | currency }} / 假日（五〜日）價格：{{ room[0].holidayPrice | currency }}
             </span>
             <span>
               入住時間：{{ room[0].checkInAndOut.checkInEarly }}（最早）/ {{ room[0].checkInAndOut.checkInLate }}（最晚）退房時間：{{ room[0].checkInAndOut.checkOut }}
@@ -56,7 +59,10 @@
               </template>
             </ul>
           </div>
-          <ServiceIcon :amenities="room[0].amenities" />
+          <ServiceIcon
+            :amenities="room[0].amenities"
+            class="icons align-self-center align-self-md-auto"
+          />
           <div class="datePicker">
             <span class="mb-2 font-weight-bolder">
               空房狀態查詢
@@ -68,6 +74,7 @@
                   :type="'date'"
                   :format="'YYYY-MM-DD'"
                   :value-type="'format'"
+                  :disabled-date="disabledDates"
                   inline
                   range
                 />
@@ -96,13 +103,19 @@ export default {
     return context.$axios.$get(`/room/${context.params.id}`)
       .then((res) => {
         const { booking, room } = res;
+        const booked = [];
         const splitDescription = room[0].description
           .trim()
           .split('.')
           .slice(0, 4);
+
+        booking.forEach((reservation) => {
+          booked.push(reservation.date);
+        });
+
         return {
           splitDescription,
-          booking,
+          booked,
           room,
         };
       })
@@ -124,6 +137,17 @@ export default {
       const modalId = document.getElementById('rvModal');
       modalId.classList.remove('disabled');
     },
+    disabledDates(date) {
+      const vm = this;
+      const today = new Date();
+      const YYYY = new Date(date).getFullYear();
+      const MM = new Date(date).getMonth() + 1;
+      const DD = new Date(date).getDate();
+
+      return date < today
+      || new Date(date).getTime() > new Date().getTime() + 7776000000
+      || vm.booked.includes(`${YYYY}-${MM}-${DD}`);
+    },
   },
 };
 </script>
@@ -138,6 +162,12 @@ export default {
   width: 100%;
   padding-left: 160px;
   padding-right: 160px;
+  @media (max-width: 768px) {
+    position: relative;
+    height: 50vh;
+    padding-right: 80px;
+    padding-left: 80px;
+  }
   &__leave {
     margin-top: 90px;
   }
@@ -150,11 +180,17 @@ export default {
 .roomDetail {
   padding-top: 65px;
   padding-right: 130px;
-  padding-left: 30px;
+  padding-left: 40px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   overflow: auto;
+  @media (max-width: 768px) {
+    height: 100%;
+    overflow-y: visible;
+    overflow-x: auto;
+    padding-right: 40px;
+  }
   &__time {
     margin-bottom: 35px;
   }
@@ -167,10 +203,18 @@ export default {
   display: flex;
   flex-direction: column;
   margin-bottom: 59px;
+  @media (max-width: 768px) {
+    align-self: center;
+  }
 }
 .test {
   width: 300px;
   height: 300px;
   background-color: red;
+}
+.icons {
+  @media (max-width: 768px) {
+    margin-left: -15px;
+  }
 }
 </style>

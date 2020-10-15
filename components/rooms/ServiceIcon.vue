@@ -34,5 +34,10 @@ export default {
   grid-template-rows: repeat(2, 59px);
   row-gap: 25px;
   column-gap: 35px;
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(4, 59px);
+    grid-template-rows: repeat(2, 59px);
+    column-gap: 20px;
+  }
 }
 </style>

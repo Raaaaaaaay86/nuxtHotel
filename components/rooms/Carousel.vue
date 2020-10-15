@@ -10,27 +10,18 @@
       <li data-target="#carouselExampleCaptions" data-slide-to="2" />
     </ol>
     <div class="carousel-inner">
-      <div class="carousel-item overflow-hidden active">
-        <img
-          :src="require('@/assets/img/room1/bg1.jpeg')"
-          class="carousel-item-img d-block w-100"
-          alt="..."
+      <template v-for="(img, key) in imageUrl">
+        <div
+          :key="key"
+          class="carousel-item"
+          :class="{ 'active' : key === 0 }"
         >
-      </div>
-      <div class="carousel-item overflow-hidden">
-        <img
-          :src="require('@/assets/img/room1/bg2.jpeg')"
-          class="carousel-item-img d-block w-100"
-          alt="..."
-        >
-      </div>
-      <div class="carousel-item overflow-hidden">
-        <img
-          :src="require('@/assets/img/room1/bg3.jpeg')"
-          class="carousel-item-img d-block w-100"
-          alt="..."
-        >
-      </div>
+          <div
+            class="carousel-item-img"
+            :style="`backgroundImage: url(${img})`"
+          />
+        </div>
+      </template>
     </div>
     <a
       class="carousel-control-prev"
@@ -53,12 +44,41 @@
   </div>
 </template>
 
+<script>
+export default {
+  props: {
+    imageUrl: {
+      type: Array,
+      required: false,
+      default: () => [1, 2, 3],
+    },
+  },
+};
+</script>
+
 <style lang="scss" coped>
 .carousel {
   position: absolute;
+  height: 100%;
+  width: 100%;
+  &-inner {
+    height: 100vh;
+    @media (max-width: 768px) {
+      height: 50vh
+    }
+  }
   &-item {
+    width: 100%;
+    height: 100%;
     &-img{
-      height: 100vh;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center center;
+    @media (max-width: 768px) {
+      height: 50vh;
+      position: absolute;
+    }
     }
   }
 }
