@@ -11,5 +11,8 @@
   url('../assets/img/house/bg1.jpeg');
   background-size: cover;
   background-position: center top;
+  @media(max-width: 768px) {
+    height: auto;
+  }
 }
 </style>

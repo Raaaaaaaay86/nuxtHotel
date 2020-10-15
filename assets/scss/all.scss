@@ -2,6 +2,10 @@
 
 $theme: #38470B;
 
+*, html, body {
+  font-family:'微軟正黑體', 'MicroSoft JhengHei', Arial, Helvetica, sans-serif;
+}
+
 .list-style {
   &--none {
     list-style: none;

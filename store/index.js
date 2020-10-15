@@ -29,6 +29,8 @@ const actions = {
       stayArray.push(`${YYYY}-${MM}-${DD}`);
       currentTime += 86400000;
     }
+    stayArray[0] = context.state.rv.start;
+    stayArray[stayArray.length - 1] = context.state.rv.end;
 
     const sendData = {
       name,

@@ -12,7 +12,7 @@
             :image-url="room[0].imageUrl"
           />
           <div class="sideInfo">
-            <div class="d-flex sideInfo__leave">
+            <div class="d-flex sideInfo__leave font-weight-bold">
               <img :src="require('@/assets/svg/escapeLeft.svg')" alt="">
               <nuxt-link to="/" class="mb-0 ml-2">
                 查看其他房型
@@ -33,6 +33,7 @@
             </div>
           </div>
         </div>
+
         <div class="col-12 col-md-7 roomDetail">
           <h1>
             {{ room[0].name }}
@@ -54,15 +55,17 @@
             <ul>
               <template v-for="(quote, i) in splitDescription">
                 <li :key="i">
-                  {{ quote }}.
+                  {{ quote | detailCn }}
                 </li>
               </template>
             </ul>
           </div>
+
           <ServiceIcon
             :amenities="room[0].amenities"
             class="icons align-self-center align-self-md-auto"
           />
+
           <div class="datePicker">
             <span class="mb-2 font-weight-bolder">
               空房狀態查詢
@@ -165,8 +168,8 @@ export default {
   @media (max-width: 768px) {
     position: relative;
     height: 50vh;
-    padding-right: 80px;
-    padding-left: 80px;
+    padding-right: 40px;
+    padding-left: 40px;
   }
   &__leave {
     margin-top: 90px;
@@ -177,6 +180,7 @@ export default {
     margin-bottom: 110px;
   }
 }
+
 .roomDetail {
   padding-top: 65px;
   padding-right: 130px;
@@ -198,6 +202,7 @@ export default {
     padding-left: 20px;
   }
 }
+
 .datePicker {
   margin-top: 56px;
   display: flex;
@@ -207,6 +212,7 @@ export default {
     align-self: center;
   }
 }
+
 .test {
   width: 300px;
   height: 300px;

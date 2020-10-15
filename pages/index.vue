@@ -2,7 +2,7 @@
   <div class="container-fluid h-100 root">
     <div class="row h-100">
       <!--sidebar start-->
-      <div class="col-3 offset-1 d-flex flex-column justify-content-center align-items-center">
+      <div class="col-12 col-md-3 offset-md-1 d-flex flex-column justify-content-center align-items-center">
         <img
           :src="require('@/assets/img/logo.png')"
           alt="logo"
@@ -27,7 +27,7 @@
       </div>
       <!--sidebar end-->
       <!--cube start-->
-      <div class="col-7 overflow-hidden d-flex justify-content-center align-items-center">
+      <div class="col-12 col-md-7 py-3 overflow-hidden d-flex justify-content-center align-items-center">
         <div class="cubeGroup">
           <template v-for="(i, key) in roomsId">
             <nuxt-link :key="key" :to="`/rooms/${i}`" :class="`cubeGroup__cube${key + 1}`" />
@@ -55,6 +55,10 @@ export default {
   width: 142px;
   height: 255px;
   margin-bottom: 185px;
+  @media (max-width: 768px) {
+    margin-top: 45px;
+    margin-bottom: 45px;
+  }
 }
 
 .hotelInfo {
@@ -76,6 +80,11 @@ export default {
   row-gap: 0;
   grid-template-columns: repeat(3, 275px);
   grid-template-rows: repeat(2, 275px);
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 275px);
+    grid-template-rows: repeat(6, 275px);
+    row-gap: 30px;
+  }
 }
 
 @for $i from 1 through 6 {
@@ -102,7 +111,7 @@ export default {
   }
 }
 
-.cubeGroup__cube1 {
+.cubeGroup__cube6 {
   &:hover {
     &::after {
       content: 'Single Room';
@@ -110,7 +119,7 @@ export default {
   }
 }
 
-.cubeGroup__cube2 {
+.cubeGroup__cube5 {
   &:hover {
     &::after {
       content: 'Deluxe Single Room';
@@ -118,7 +127,7 @@ export default {
   }
 }
 
-.cubeGroup__cube3 {
+.cubeGroup__cube4 {
   &:hover {
     &::after {
       content: 'Double Room';
@@ -126,7 +135,7 @@ export default {
   }
 }
 
-.cubeGroup__cube4 {
+.cubeGroup__cube3 {
   &:hover {
     &::after {
       content: 'Deluxe Double Room';
@@ -134,7 +143,7 @@ export default {
   }
 }
 
-.cubeGroup__cube5 {
+.cubeGroup__cube2 {
   &:hover {
     &::after {
       content: 'Twin Room';
@@ -142,7 +151,7 @@ export default {
   }
 }
 
-.cubeGroup__cube6 {
+.cubeGroup__cube1 {
   &:hover {
     &::after {
       content: 'Deluxe Twin Room';
