@@ -30,7 +30,11 @@
       <div class="col-12 col-md-7 py-3 overflow-hidden d-flex justify-content-center align-items-center">
         <div class="cubeGroup">
           <template v-for="(i, key) in roomsId">
-            <nuxt-link :key="key" :to="`/rooms/${i}`" :class="`cubeGroup__cube${key + 1}`" />
+            <nuxt-link
+              :key="key"
+              :to="`/rooms/${i}`"
+              :class="`cubeGroup__cube${key + 1}`"
+            />
           </template>
         </div>
       </div>
@@ -111,7 +115,7 @@ export default {
   }
 }
 
-.cubeGroup__cube6 {
+.cubeGroup__cube1 {
   &:hover {
     &::after {
       content: 'Single Room';
@@ -119,7 +123,7 @@ export default {
   }
 }
 
-.cubeGroup__cube5 {
+.cubeGroup__cube2 {
   &:hover {
     &::after {
       content: 'Deluxe Single Room';
@@ -127,7 +131,7 @@ export default {
   }
 }
 
-.cubeGroup__cube4 {
+.cubeGroup__cube3 {
   &:hover {
     &::after {
       content: 'Double Room';
@@ -135,7 +139,7 @@ export default {
   }
 }
 
-.cubeGroup__cube3 {
+.cubeGroup__cube4 {
   &:hover {
     &::after {
       content: 'Deluxe Double Room';
@@ -143,7 +147,7 @@ export default {
   }
 }
 
-.cubeGroup__cube2 {
+.cubeGroup__cube5 {
   &:hover {
     &::after {
       content: 'Twin Room';
@@ -151,7 +155,7 @@ export default {
   }
 }
 
-.cubeGroup__cube1 {
+.cubeGroup__cube6 {
   &:hover {
     &::after {
       content: 'Deluxe Twin Room';

@@ -97,16 +97,16 @@ const mutations = {
 
 const getters = {
   roomsId(state) {
-    const ids = [];
-    const data = state.rooms;
-    const arr = Object.keys(data).map((key) => data[key]);
+    const arrangedIds = [
+      '3Elqe8kfMxdZv5xFLV4OUeN6jhmxIvQSTyj4eTgIowfIRvF4rerA2Nuegzc2Rgwu',
+      'g0mYhN6ignMz4VYW7eiWsXZN8DHolHzH8LuVmM6hq5h6BrrqrLMw4aJgHv7LZ3RQ',
+      'RA8NhExaXXZB7EODVALSDvFFQzj1JP0a4C1pwZ1acPaieRBwiWoCb0FE0KUbXaxg',
+      'kICyWhZ5XsfI4n1d4gBOsDjIyIxNozwgmxYKyZpzi5pjLcU2Nl4RhiGrn6zaPuTJ',
+      'VCxbQq1vLeUtxW781k9Dlq3mHBRNl5YP19Lhq8k5TbIr2BeH58gRpnNKGoEgkysz',
+      'YovqNpFDaal598jbpd1A14gXwDE6gekTqJgxOAGcq78B8YnP7claymQVFy2GTwgb',
+    ];
 
-    arr.sort((a, b) => a.normalDayPrice < b.normalDayPrice)
-      .forEach((el) => {
-        ids.push(el.id);
-      });
-
-    return ids;
+    return arrangedIds;
   },
   rvInfo(state) {
     return { ...state.rv };
