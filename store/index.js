@@ -10,7 +10,6 @@ const state = () => ({
 
 const actions = {
   nuxtServerInit(vuexContext, context) {
-    console.log(context);
     return context.$axios.$get('/rooms')
       .then((res) => {
         vuexContext.commit('SET_ROOMS_DATA', res.items);
