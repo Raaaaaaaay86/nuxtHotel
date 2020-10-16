@@ -29,3 +29,12 @@ $theme: #38470B;
 .h-100vh {
   height: 100vh !important;
 }
+
+.carousel-indicators > li{
+  border-radius: 50%;
+  border: 1px solid white;
+  background-color: transparent;
+    &.active {
+      background-color: white;
+    }
+}

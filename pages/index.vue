@@ -81,7 +81,7 @@ export default {
   grid-template-columns: repeat(3, 275px);
   grid-template-rows: repeat(2, 275px);
   @media (max-width: 768px) {
-    grid-template-columns: repeat(1, 275px);
+    grid-template-columns: repeat(1, 350px);
     grid-template-rows: repeat(6, 275px);
     row-gap: 30px;
   }

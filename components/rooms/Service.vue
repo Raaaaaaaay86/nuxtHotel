@@ -1,6 +1,6 @@
 <template>
   <div
-    class="service"
+    class="d-flex flex-column justify-content-center align-items-center service"
     :class="[ amenity ? '' : 'service--disabled' ]"
   >
     <img
@@ -11,7 +11,7 @@
       v-if="amenity"
       :src="require('@/assets/png/icon__check.png')"
       alt="service-available"
-      class="service__check"
+      class="service__cross"
     >
     <img
       v-else
@@ -36,7 +36,7 @@ export default {
     service: {
       type: String,
       required: false,
-      default: 'Breafast',
+      default: 'Breakfast',
     },
     onlyAvailable: {
       type: Boolean,
@@ -49,10 +49,6 @@ export default {
 
 <style lang="scss" scoped>
   .service {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     position: relative;
     &--disabled {
       opacity: 0.5;

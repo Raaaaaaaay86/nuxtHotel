@@ -4,7 +4,7 @@
     class="carousel slide"
     data-ride="carousel"
   >
-    <ol class="carousel-indicators">
+    <ol class="carousel-indicators custom-indicators-setting">
       <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active" />
       <li data-target="#carouselExampleCaptions" data-slide-to="1" />
       <li data-target="#carouselExampleCaptions" data-slide-to="2" />
@@ -79,6 +79,15 @@ export default {
       height: 50vh;
       position: absolute;
     }
+    }
+  }
+}
+
+.custom-indicators-setting {
+  & > li {
+    border: 1px solid #38470B;
+    &.active {
+      background-color: #38470B;
     }
   }
 }

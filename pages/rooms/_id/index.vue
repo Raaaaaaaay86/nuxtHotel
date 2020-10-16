@@ -11,7 +11,7 @@
           <Carousel
             :image-url="room[0].imageUrl"
           />
-          <div class="sideInfo">
+          <div class="sideInfo d-flex flex-column justify-content-between">
             <div class="d-flex sideInfo__leave font-weight-bold">
               <img :src="require('@/assets/svg/escapeLeft.svg')" alt="">
               <nuxt-link to="/" class="mb-0 ml-2">
@@ -34,7 +34,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-7 roomDetail">
+        <div class="col-12 col-md-7 d-flex flex-column roomDetail">
           <h1>
             {{ room[0].name }}
           </h1>
@@ -63,10 +63,10 @@
 
           <ServiceIcon
             :amenities="room[0].amenities"
-            class="icons align-self-center align-self-md-auto"
+            class="roomDetail__serviceIcons align-self-center align-self-md-auto"
           />
 
-          <div class="datePicker">
+          <div class="d-flex flex-column align-self-center align-self-md-auto datePicker">
             <span class="mb-2 font-weight-bolder">
               空房狀態查詢
             </span>
@@ -158,9 +158,6 @@ export default {
 <style lang="scss" scoped>
 .sideInfo {
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   height: 100vh;
   width: 100%;
   padding-left: 160px;
@@ -186,8 +183,6 @@ export default {
   padding-right: 130px;
   padding-left: 40px;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
   overflow: auto;
   @media (max-width: 768px) {
     height: 100%;
@@ -198,6 +193,11 @@ export default {
   &__time {
     margin-bottom: 35px;
   }
+  &__serviceIcons {
+    @media (max-width: 768px) {
+      margin-left: -15px;
+    }
+  }
   ul {
     padding-left: 20px;
   }
@@ -205,19 +205,9 @@ export default {
 
 .datePicker {
   margin-top: 56px;
-  display: flex;
-  flex-direction: column;
   margin-bottom: 59px;
-  @media (max-width: 768px) {
-    align-self: center;
-  }
 }
 
-.test {
-  width: 300px;
-  height: 300px;
-  background-color: red;
-}
 .icons {
   @media (max-width: 768px) {
     margin-left: -15px;
