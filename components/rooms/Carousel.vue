@@ -19,6 +19,7 @@
           <div
             class="carousel-item-img"
             :style="`backgroundImage: url(${img})`"
+            @click="$emit('openLightboxWithIndex', key)"
           />
         </div>
       </template>
@@ -86,6 +87,7 @@ export default {
 .custom-indicators-setting {
   & > li {
     border: 1px solid #38470B;
+    margin-right: 16px;
     &.active {
       background-color: #38470B;
     }

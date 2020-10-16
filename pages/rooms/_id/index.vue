@@ -10,9 +10,10 @@
         <div class="col-12 col-md-5 position-relative">
           <Carousel
             :image-url="room[0].imageUrl"
+            @openLightboxWithIndex.capture="openLightboxWithIndex"
           />
           <div class="sideInfo d-flex flex-column justify-content-between">
-            <div class="d-flex sideInfo__leave font-weight-bold">
+            <div class="d-flex sideInfo__leave font-weight-bold" style="z-index: 10;">
               <img :src="require('@/assets/svg/escapeLeft.svg')" alt="">
               <nuxt-link to="/" class="mb-0 ml-2">
                 查看其他房型
@@ -87,6 +88,12 @@
         </div>
       </div>
     </div>
+    <CoolLightBox
+      :items="room[0].imageUrl"
+      :index="index"
+      :enable-scroll-lock="false"
+      @close="index = null"
+    />
   </div>
 </template>
 
@@ -94,6 +101,8 @@
 import Carousel from '@/components/rooms/Carousel';
 import ServiceIcon from '@/components/rooms/ServiceIcon';
 import Modal from '@/components/rooms/Modal';
+import CoolLightBox from 'vue-cool-lightbox';
+import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css';
 
 export default {
   layout: 'room',
@@ -101,6 +110,8 @@ export default {
     Carousel,
     ServiceIcon,
     Modal,
+    // eslint-disable-next-line vue/no-unused-components
+    CoolLightBox,
   },
   asyncData(context) {
     return context.$axios.$get(`/room/${context.params.id}`)
@@ -127,6 +138,7 @@ export default {
   data() {
     return {
       dateRange: ['', ''],
+      index: null,
     };
   },
   watch: {
@@ -151,6 +163,10 @@ export default {
       || new Date(date).getTime() > new Date().getTime() + 7776000000
       || vm.booked.includes(`${YYYY}-${MM}-${DD}`);
     },
+    openLightboxWithIndex(index) {
+      const vm = this;
+      vm.index = index;
+    },
   },
 };
 </script>
@@ -162,6 +178,7 @@ export default {
   width: 100%;
   padding-left: 160px;
   padding-right: 160px;
+  pointer-events: none;
   @media (max-width: 768px) {
     position: relative;
     height: 50vh;
@@ -170,8 +187,10 @@ export default {
   }
   &__leave {
     margin-top: 90px;
+    pointer-events: auto;
   }
   &__btn {
+    pointer-events: auto;
     padding-right: 60px;
     padding-left: 60px;
     margin-bottom: 110px;

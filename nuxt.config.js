@@ -25,7 +25,7 @@ export default {
       ssr: false,
     },
     {
-      src: '@/plugins/datepicker',
+      src: '@/plugins/datepicker.js',
       ssr: false,
     },
     '@/filter/service.js',
