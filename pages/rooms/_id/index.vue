@@ -20,16 +20,16 @@
               </nuxt-link>
             </div>
             <div class="d-flex flex-column align-content-center">
-              <h2 class="font-weight-bold">
+              <h2 class="mb-5  mb-md-0 font-weight-bold">
                 {{ room[0].normalDayPrice | currency }}
                 <span class="h4"> / 晚</span>
               </h2>
 
               <button
-                class="btn btn-primary sideInfo__btn"
+                class="d-none d-md-block btn btn-primary sideInfo__btn"
                 @click.prevent="openModal"
               >
-                Booking now
+                點此預約
               </button>
             </div>
           </div>
@@ -69,7 +69,7 @@
 
           <div class="d-flex flex-column align-self-center align-self-md-auto datePicker">
             <span class="mb-2 font-weight-bolder">
-              空房狀態查詢
+              選取欲入住日期
             </span>
             <div>
               <client-only>
@@ -85,6 +85,12 @@
               </client-only>
             </div>
           </div>
+          <button
+            class="d-block d-md-none btn btn-primary sideInfo__btn"
+            @click.prevent="openModal"
+          >
+            點此預約
+          </button>
         </div>
       </div>
     </div>
@@ -194,6 +200,10 @@ export default {
     padding-right: 60px;
     padding-left: 60px;
     margin-bottom: 110px;
+    @media (max-width: 768px) {
+      margin-left: 60px;
+      margin-right: 60px;
+    }
   }
 }
 
@@ -225,6 +235,9 @@ export default {
 .datePicker {
   margin-top: 56px;
   margin-bottom: 59px;
+  @media(max-width: 768px) {
+    margin-bottom: 16px;
+  }
 }
 
 .icons {
