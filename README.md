@@ -1,20 +1,2 @@
-# hotel
 
-## Build Setup
-
-```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+[Design draft](https://xd.adobe.com/spec/808b17f6-c862-47bd-4410-58440ddd01d7-f6ba/grid/) by Penny (p332350@gmail.com)
