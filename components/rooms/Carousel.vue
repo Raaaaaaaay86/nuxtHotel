@@ -57,40 +57,6 @@ export default {
 };
 </script>
 
-<style lang="scss" coped>
-.carousel {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  &-inner {
-    height: 100vh;
-    @media (max-width: 768px) {
-      height: 50vh
-    }
-  }
-  &-item {
-    width: 100%;
-    height: 100%;
-    &-img{
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center center;
-    @media (max-width: 768px) {
-      height: 50vh;
-      position: absolute;
-    }
-    }
-  }
-}
+<style lang="scss">
 
-.custom-indicators-setting {
-  & > li {
-    border: 1px solid #38470B;
-    margin-right: 16px;
-    &.active {
-      background-color: #38470B;
-    }
-  }
-}
 </style>
