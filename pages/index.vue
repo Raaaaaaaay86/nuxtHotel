@@ -27,7 +27,7 @@
       </div>
       <!--sidebar end-->
       <!--cube start-->
-      <div class="col-12 col-md-7 py-3 overflow-hidden d-flex justify-content-center align-items-center">
+      <div class="col-12 col-md-8 py-3 overflow-hidden d-flex justify-content-center align-items-center">
         <div class="cubeGroup">
           <template v-for="(i, key) in roomsId">
             <nuxt-link
@@ -79,12 +79,14 @@ export default {
 }
 
 .cubeGroup {
+  width: 100%;
   display: grid;
   margin: 0;
   row-gap: 0;
-  grid-template-columns: repeat(3, 275px);
-  grid-template-rows: repeat(2, 275px);
-  @media (max-width: 768px) {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, calc(100vh - (100vh * 0.6)));
+@media (max-width: 768px) {
+    width: auto;
     grid-template-columns: repeat(1, 350px);
     grid-template-rows: repeat(6, 275px);
     row-gap: 30px;
@@ -118,6 +120,7 @@ export default {
 .cubeGroup__cube1 {
   &:hover {
     &::after {
+      text-align: center;
       content: 'Single Room';
     }
   }
@@ -126,6 +129,7 @@ export default {
 .cubeGroup__cube2 {
   &:hover {
     &::after {
+      text-align: center;
       content: 'Deluxe Single Room';
     }
   }
@@ -134,6 +138,7 @@ export default {
 .cubeGroup__cube3 {
   &:hover {
     &::after {
+      text-align: center;
       content: 'Double Room';
     }
   }
@@ -142,6 +147,7 @@ export default {
 .cubeGroup__cube4 {
   &:hover {
     &::after {
+      text-align: center;
       content: 'Deluxe Double Room';
     }
   }
@@ -150,6 +156,7 @@ export default {
 .cubeGroup__cube5 {
   &:hover {
     &::after {
+      text-align: center;
       content: 'Twin Room';
     }
   }
@@ -158,6 +165,7 @@ export default {
 .cubeGroup__cube6 {
   &:hover {
     &::after {
+      text-align: center;
       content: 'Deluxe Twin Room';
     }
   }
