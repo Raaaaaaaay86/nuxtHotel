@@ -1,6 +1,6 @@
 <template>
   <div id="rvModal" class="layer layer--flex-center disabled">
-    <BookingPage v-bind="$attrs" />
+    <BookingPage v-bind="$attrs" v-on="$listeners" />
   </div>
 </template>
 

@@ -184,11 +184,12 @@ export default {
         id: this.$route.params.id,
       };
       this.$store.dispatch('booking', info)
-        .then(() => {
+        .then((stayArray) => {
           successPage.classList.remove('disabled');
           infoModal.classList.add('d-none');
           detailModal.classList.add('d-none');
           rowModal.classList.add('h-100');
+          this.$emit('updateNewStays', stayArray);
         })
         .catch(() => {
           console.log('66666');

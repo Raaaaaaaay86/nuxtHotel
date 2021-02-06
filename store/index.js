@@ -24,14 +24,14 @@ const actions = {
     let currentTime = new Date(start).getTime();
     while (currentTime <= stopTime) {
       const YYYY = new Date(currentTime).getFullYear();
-      const MM = new Date(currentTime).getMonth() + 1;
-      const DD = new Date(currentTime).getDate();
+      const MM = `0${new Date(currentTime).getMonth() + 1}`.slice(-2);
+      const DD = `0${new Date(currentTime).getDate()}`.slice(-2);
       stayArray.push(`${YYYY}-${MM}-${DD}`);
       currentTime += 86400000;
     }
     stayArray[0] = context.state.rv.start;
     stayArray[stayArray.length - 1] = context.state.rv.end;
-
+    console.log(stayArray)
     const sendData = {
       name,
       tel,
@@ -41,8 +41,8 @@ const actions = {
 
     return this.$axios.$post(`/room/${bookerInfo.id}`, sendData)
       .then((res) => {
-        console.log(res);
         context.commit('BOOK_SUCCESS');
+        return stayArray;
       })
       .catch(() => {
         context.commit('BOOK_FAIL');

@@ -4,6 +4,7 @@
       :amenities="room[0].amenities"
       :room="room"
       :disabled-dates="disabledDates"
+      @updateNewStays="updateNewStays"
     />
     <div class="container-fluid px-0">
       <div class="row no-gutters">
@@ -116,7 +117,6 @@ export default {
     Carousel,
     ServiceIcon,
     Modal,
-    // eslint-disable-next-line vue/no-unused-components
     CoolLightBox,
   },
   asyncData(context) {
@@ -167,17 +167,22 @@ export default {
       const vm = this;
       const today = new Date();
       const YYYY = new Date(date).getFullYear();
-      const MM = new Date(date).getMonth() + 1;
-      const DD = new Date(date).getDate();
+      const MM = `0${new Date(date).getMonth() + 1}`.slice(-2);
+      const DD = `0${new Date(date).getDate()}`.slice(-2);
 
       return date < today
       || new Date(date).getTime() > new Date().getTime() + 7776000000
-      || vm.booked.includes(`${YYYY}-${MM}-${DD}`);
+      || vm.booked.includes(`${YYYY}-${MM}-${DD}`)
     },
     openLightboxWithIndex(index) {
       const vm = this;
       vm.index = index;
     },
+    updateNewStays(newStays) {
+      console.log(newStays);
+      const vm = this;
+      newStays.forEach((newStayDate) => vm.booked.push(newStayDate));
+    }
   },
 };
 </script>
