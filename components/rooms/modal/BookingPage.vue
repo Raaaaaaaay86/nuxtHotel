@@ -8,13 +8,13 @@
               <label for="name">
                 姓名
               </label>
-              <input v-model="name" class="form-control" type="text"></input>
+              <input v-model="name" class="form-control" type="text">
             </div>
             <div class="form-group">
               <label for="telephone">
                 手機號碼
               </label>
-              <input v-model="tel" class="form-control" type="telephone"></input>
+              <input v-model="tel" class="form-control" type="telephone">
             </div>
             <div class="form-group">
               <label>
