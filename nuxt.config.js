@@ -6,6 +6,9 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
+      { name: 'keywords', content: '住宿,旅遊,旅館,預約,House Hotel, 好室旅館, 好室, 好室 Hotel' },
+      { hid: 'description', name: 'description', content: 'House Hotel - 住宿預約頁面' },
+      { name: 'distribution', content: 'Taiwan' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

@@ -147,6 +147,11 @@ export default {
       index: null,
     };
   },
+  head() {
+    return {
+      title: `好室 Hotel - ${this.room[0].name}`
+    }
+  },
   watch: {
     dateRange() {
       const vm = this;
